@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Card Details Form</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="banner">
+          <div class="card front"></div>
+          <div class="card back"></div>
+        </div>
+        <div class="form">
+          <form>
+            <fieldset>
+              <legend>CARDHOLDER NAME</legend>
+              <input
+                required
+                id="card-holder-name"
+                type="text"
+                placeholder="e.g. Jane Applessed"
+              />
+            </fieldset>
+            <fieldset>
+              <legend>CARD NUMBER</legend>
+              <input
+                required
+                id="card-number"
+                inputmode="numeric"
+                type="text"
+                placeholder="e.g. 1234 5678 9123 0000"
+              />
+            </fieldset>
+
+            <div class="field-row">
+              <fieldset>
+                <legend>EXP. DATE (MM/YY)</legend>
+                <input
+                  required
+                  id="expiry-month"
+                  type="text"
+                  inputmode="numeric"
+                  placeholder="MM"
+                />
+                <input
+                  required
+                  id="expiry-year"
+                  type="text"
+                  inputmode="numeric"
+                  placeholder="YY"
+                />
+              </fieldset>
+              <fieldset>
+                <legend>CVC</legend>
+                <input required id="cvc" type="text" placeholder="e.g. 123" />
+              </fieldset>
+            </div>
+
+            <button type="submit" class="confirm">CONFIRM</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
