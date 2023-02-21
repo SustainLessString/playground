@@ -1,5 +1,3 @@
-import { _Range } from "./utils";
-
 export type Step = number;
 
 export type PersonalInfo = {
