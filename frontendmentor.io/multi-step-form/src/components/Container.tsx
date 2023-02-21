@@ -1,9 +1,20 @@
 import { Header, Steps } from "@app/components";
-import { ContainerProps } from "@app/types";
+import { ContainerProps } from "@app/types/components";
 
-const Container: React.FC<ContainerProps> = ({ step }) => {
+const Container: React.FC<ContainerProps> = ({
+  step,
+  step2Props,
+  step3Props,
+  step4Props,
+}) => {
   return (
-    <div className="rounded-xl p-0 desktop:my-4 desktop:mx-8 mobile:p-12 mobile:mx-12 mobile:my-0 caret-transparent">
+    <div
+      className={
+        "block p-0 bg-neutral-white rounded-xl caret-transparent " +
+        " desktop:my-2 desktop:mx-8 " +
+        " mobile:p-12 mobile:mx-12 mobile:my-0"
+      }
+    >
       {step === 1 ? (
         <>
           <Header
@@ -22,7 +33,13 @@ const Container: React.FC<ContainerProps> = ({ step }) => {
             title="Select your plan"
             description="You have the option of monthly or yearly billing."
           />
-          <Steps.Step2 />
+          <Steps.Step2
+            plans={step2Props.plans}
+            selectedPlan={step2Props.selectedPlan}
+            selectedBillingOption={step2Props.selectedBillingOption}
+            handlePlanChange={step2Props.handlePlanChange}
+            handleBillingSwitch={step2Props.handleBillingSwitch}
+          />
         </>
       ) : (
         <></>
@@ -34,7 +51,12 @@ const Container: React.FC<ContainerProps> = ({ step }) => {
             title="Pick add-ons"
             description="Add-ons help enhance your gaming experience."
           />
-          <Steps.Step3 />
+          <Steps.Step3
+            addOns={step3Props.addOns}
+            selectedAddOns={step3Props.selectedAddOns}
+            billing={step3Props.billing}
+            handleAddOnClick={step3Props.handleAddOnClick}
+          />
         </>
       ) : (
         <></>
@@ -46,7 +68,11 @@ const Container: React.FC<ContainerProps> = ({ step }) => {
             title="Finishing up"
             description="Double-check everything looks OK before confirming."
           />
-          <Steps.Step4 />
+          <Steps.Step4
+            addOns={step4Props.addOns}
+            billing={step4Props.billing}
+            plan={step4Props.plan}
+          />
         </>
       ) : (
         <></>

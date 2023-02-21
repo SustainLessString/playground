@@ -2,14 +2,8 @@ export {
   Step,
   PersonalInfo,
   BillingOption,
-  AddOns,
+  AddOn,
   Plan,
 } from "@app/types/state";
 
-export {
-  NavbarProps,
-  NavbarItemProps,
-  ContainerProps,
-  HeaderProps,
-  FooterProps,
-} from "@app/types/components";
+export { NavbarItem } from "@app/types/components";

@@ -1,6 +1,6 @@
 const Step1 = () => {
   return (
-    <form className="my-2 space-y-2">
+    <form className="space-y-4">
       <fieldset>
         <legend className="text-lg border-none">Name</legend>
         <input

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NavbarItemProps } from "@app/types";
+import { NavbarItemProps } from "@app/types/components";
 
 const NavbarItem: React.FC<NavbarItemProps> = ({
   step,
@@ -8,7 +8,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({
   name,
   description,
   isActive,
-  handleClick,
+  handleNavbarClick,
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -22,7 +22,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({
         }
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        onPointerUp={handleClick}
+        onPointerUp={handleNavbarClick}
       >
         <div
           className={

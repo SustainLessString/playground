@@ -18,6 +18,13 @@ module.exports = {
       mobile: "url('/assets/images/bg-sidebar-mobile.svg')",
     },
     extend: {
+      content: {
+        check: "url('/assets/images/icon-checkmark.svg')",
+        planArcade: "url('/assets/images/icon-arcade.svg')",
+        planAdvanced: "url('/assets/images/icon-advanced.svg')",
+        planPro: "url('/assets/images/icon-pro.svg')",
+        thankyou: "url('/assets/images/icon-thankyou.svg')",
+      },
       colors: {
         primary: {
           marineblue: "hsl(213, 96%, 18%)",

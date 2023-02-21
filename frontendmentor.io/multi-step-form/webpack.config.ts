@@ -21,15 +21,6 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.svg$/i,
-        issuer: /\.[jt]sx?$/,
-        use: ["@svgr/webpack", "file-loader"],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: "asset/resource",
-      },
-      {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         resolve: {

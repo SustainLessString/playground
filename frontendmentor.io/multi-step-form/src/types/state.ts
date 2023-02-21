@@ -1,3 +1,5 @@
+import { _Range } from "./utils";
+
 export type Step = number;
 
 export type PersonalInfo = {
@@ -8,13 +10,16 @@ export type PersonalInfo = {
 
 export type Plan = {
   name: "Arcade" | "Advanced" | "Pro";
-  monthlyPrice: number;
+  price: number;
+  // isSelected: boolean;
+  // billing: BillingOption;
 };
 
 export type BillingOption = "Monthly" | "Yearly";
 
-export type AddOns = {
-  name: string;
+export type AddOn = {
+  // checked: boolean;
+  name: "Online service" | "Large storage" | "Customizable profile";
   description: string;
-  price: string;
+  monthlyPrice: number;
 };

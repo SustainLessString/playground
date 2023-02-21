@@ -1,11 +1,29 @@
 import { useState } from "react";
 
-import { Step } from "@app/types";
+import { Step, NavbarItem } from "@app/types";
 
 export const useApp = () => {
-  const [currentStep, setCurrentStep] = useState<Step>(2);
+  const [currentStep, setCurrentStep] = useState<Step>(4);
+  const navbarItems: NavbarItem[] = [
+    {
+      step: 1,
+      description: "YOUR INFO",
+    },
+    {
+      step: 2,
+      description: "SELECT PLAN",
+    },
+    {
+      step: 3,
+      description: "ADD-ONS",
+    },
+    {
+      step: 4,
+      description: "SUMMARY",
+    },
+  ];
 
-  const handleNavbarClick = (e: React.PointerEvent<HTMLDivElement>) => {
+  function handleNavbarClick(e: React.PointerEvent<HTMLDivElement>) {
     switch (e.currentTarget.getAttribute("id")) {
       case "NavbarItem1":
         return setCurrentStep(() => 1);
@@ -16,7 +34,7 @@ export const useApp = () => {
       case "NavbarItem4":
         return setCurrentStep(() => 4);
     }
-  };
+  }
 
   function handleNextStep() {
     setCurrentStep(() => {
@@ -37,5 +55,6 @@ export const useApp = () => {
     handleNavbarClick,
     handldePreviousStep,
     handleNextStep,
+    navbarItems,
   };
 };

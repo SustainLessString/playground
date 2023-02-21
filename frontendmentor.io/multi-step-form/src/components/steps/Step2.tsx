@@ -1,50 +1,28 @@
-import planArcade from "@assets/images/icon-arcade.svg";
-import planAdvanced from "@assets/images/icon-advanced.svg";
-import planPro from "@assets/images/icon-pro.svg";
-
-import { usePlan } from "@app/hooks";
 import {
   PlanProps,
   ToggleBillingOptionProps,
   BillingOptionNameProps,
+  Step2Props,
 } from "@app/types/components";
 
-const Step2 = () => {
-  const { billingOption, selectedPlan, handleBillingSwitch, handleSelectPlan } =
-    usePlan();
-
+const Step2: React.FC<Step2Props> = (props: Step2Props) => {
   return (
     <div className="flex flex-col gap-y-8 bg-neutral-white">
       <ul className="flex flex-row justify-between gap-x-4">
-        <Plan
-          selected={selectedPlan === "Arcade"}
-          imgSrc={planArcade}
-          title="Arcade"
-          price={9}
-          billing={billingOption}
-          select={() => handleSelectPlan("Arcade")}
-        />
-        <Plan
-          selected={selectedPlan === "Advanced"}
-          imgSrc={planAdvanced}
-          title="Advanced"
-          price={12}
-          billing={billingOption}
-          select={() => handleSelectPlan("Advanced")}
-        />
-        <Plan
-          selected={selectedPlan === "Pro"}
-          imgSrc={planPro}
-          title="Pro"
-          price={15}
-          billing={billingOption}
-          select={() => handleSelectPlan("Pro")}
-        />
+        {props.plans.map((plan) => (
+          <Plan
+            name={plan.name}
+            handlePlanChange={props.handlePlanChange}
+            price={plan.price}
+            billing={props.selectedBillingOption}
+            isSelected={plan.name === props.selectedPlan}
+          />
+        ))}
       </ul>
 
       <ToggleBillingOption
-        option={billingOption}
-        handler={handleBillingSwitch}
+        option={props.selectedBillingOption}
+        handler={props.handleBillingSwitch}
       />
     </div>
   );
@@ -54,26 +32,32 @@ export default Step2;
 
 /* ***** ***** ***** ***** ***** *List of Plan* ***** ***** ***** ***** ***** */
 const Plan: React.FC<PlanProps> = ({
-  selected,
-  imgSrc,
-  title,
+  isSelected,
+  name,
   price,
-  billing,
-  select,
+  billing = "Monthly",
+  handlePlanChange,
 }) => {
   return (
     <li
       className={
         "w-1/3 border rounded-lg cursor-pointer pointer-events-auto" +
-        (selected
+        (isSelected
           ? " border-neutral-coolgray bg-primary-lightblue bg-opacity-25"
           : " border-neutral-lightgray")
       }
-      onPointerUp={select}
+      onPointerUp={() => handlePlanChange(name)}
     >
-      <img src={imgSrc} alt={title + " Plan"} className="m-4" />
+      <div
+        className={
+          "m-4 " +
+          (name === "Arcade" ? "content-planArcade" : "") +
+          (name === "Advanced" ? "content-planAdvanced" : "") +
+          (name === "Pro" ? "content-planPro" : "")
+        }
+      />
       <div className="mx-4 mt-8 mb-4 cursor-default pointer-events-none gap-y-2">
-        <div className="font-bold text-primary-marineblue">{title}</div>
+        <div className="font-bold text-primary-marineblue">{name}</div>
         <div className="text-xs font-regular text-neutral-coolgray">
           {billing === "Monthly" ? price + "/mo" : price * 10 + "/yr"}
         </div>
