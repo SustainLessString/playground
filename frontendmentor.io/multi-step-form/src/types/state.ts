@@ -1,4 +1,12 @@
 export type Step = number;
+export type NavbarItem = {
+  step: Step;
+  description: string;
+};
+export type HeaderItem = {
+  title: string;
+  description: string;
+};
 
 export type PersonalInfo = {
   name: string;
@@ -9,15 +17,12 @@ export type PersonalInfo = {
 export type Plan = {
   name: "Arcade" | "Advanced" | "Pro";
   price: number;
-  // isSelected: boolean;
-  // billing: BillingOption;
 };
 
 export type BillingOption = "Monthly" | "Yearly";
 
 export type AddOn = {
-  // checked: boolean;
   name: "Online service" | "Large storage" | "Customizable profile";
   description: string;
-  monthlyPrice: number;
+  price: number;
 };

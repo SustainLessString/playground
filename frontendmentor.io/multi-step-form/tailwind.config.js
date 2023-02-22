@@ -23,7 +23,7 @@ module.exports = {
         planArcade: "url('/assets/images/icon-arcade.svg')",
         planAdvanced: "url('/assets/images/icon-advanced.svg')",
         planPro: "url('/assets/images/icon-pro.svg')",
-        thankyou: "url('/assets/images/icon-thankyou.svg')",
+        thankyou: "url('/assets/images/icon-thank-you.svg')",
       },
       colors: {
         primary: {

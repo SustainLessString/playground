@@ -1,37 +1,63 @@
-import { AddOn } from "@app/types";
 import { useState } from "react";
+import { AddOn, BillingOption } from "@app/types";
 
 export const useAddOn = () => {
   const addOns: AddOn[] = [
     {
       name: "Online service",
       description: "Access to multiplayer games.",
-      monthlyPrice: 1,
+      price: 1,
     },
     {
       name: "Large storage",
       description: "Extra 1TB cloud storage.",
-      monthlyPrice: 2,
+      price: 2,
     },
     {
       name: "Customizable profile",
       description: "Custom theme on your profile.",
-      monthlyPrice: 2,
+      price: 2,
     },
   ];
 
-  const [selectedAddOns, setSelectedAddOns] = useState<AddOn["name"][]>([
-    "Online service",
-    "Large storage",
-  ]);
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>(
+    addOns.slice(0, 2)
+  );
 
-  function handleAddOnClick(item: AddOn["name"]) {
+  const isAddOnInSelectedList = (addOn: AddOn) =>
+    selectedAddOns.filter((selectedAddOn) => selectedAddOn.name === addOn.name)
+      .length !== 0;
+
+  const getAddOnPrice = (
+    addOn: AddOn,
+    selectedBillingOption: BillingOption
+  ): string =>
+    "$" +
+    addOn.price * (selectedBillingOption === "Monthly" ? 1 : 10) +
+    "/" +
+    (selectedBillingOption === "Monthly" ? "mo" : "yr");
+
+  const getSumSelectedAddOnsPrice = selectedAddOns.reduce(
+    (acc, curr) => acc + curr.price,
+    0
+  );
+
+  function handleChangeSelectedAddOns(addOn: AddOn) {
     setSelectedAddOns(() => {
-      if (!selectedAddOns.filter((addOn) => addOn === item).length)
-        return [...selectedAddOns, item];
-      else return selectedAddOns.filter((addOn) => addOn !== item);
+      return !isAddOnInSelectedList(addOn)
+        ? [...selectedAddOns, addOn]
+        : selectedAddOns.filter(
+            (selectedAddOn) => selectedAddOn.name !== addOn.name
+          );
     });
   }
 
-  return { addOns, selectedAddOns, handleAddOnClick };
+  return {
+    addOns,
+    selectedAddOns,
+    isAddOnInSelectedList,
+    getAddOnPrice,
+    getSumSelectedAddOnsPrice,
+    handleChangeSelectedAddOns,
+  };
 };

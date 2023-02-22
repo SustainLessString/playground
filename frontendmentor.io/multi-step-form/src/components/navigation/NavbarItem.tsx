@@ -4,11 +4,10 @@ import { NavbarItemProps } from "@app/types/components";
 
 const NavbarItem: React.FC<NavbarItemProps> = ({
   step,
-  disabled = false,
   name,
   description,
   isActive,
-  handleNavbarClick,
+  handleGoTo,
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -18,11 +17,11 @@ const NavbarItem: React.FC<NavbarItemProps> = ({
         id={"NavbarItem" + step}
         className={
           "flex flex-row cursor-pointer caret-transparent" +
-          (disabled || isActive ? " pointer-events-none cursor-default" : "")
+          (isActive ? " pointer-events-none cursor-default" : "")
         }
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        onPointerUp={handleNavbarClick}
+        onPointerUp={() => handleGoTo(step)}
       >
         <div
           className={

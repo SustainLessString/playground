@@ -3,8 +3,8 @@ import { NavbarProps } from "@app/types/components";
 
 const Navbar: React.FC<NavbarProps> = ({
   currentStep,
-  handleNavbarClick,
   navbarItems,
+  handleGoTo,
 }) => {
   return (
     <div
@@ -28,37 +28,9 @@ const Navbar: React.FC<NavbarProps> = ({
               name={"STEP " + navbarItem.step}
               description={navbarItem.description}
               isActive={currentStep === navbarItem.step}
-              handleNavbarClick={handleNavbarClick}
+              handleGoTo={handleGoTo}
             />
           ))}
-          {/* <NavbarItem
-            step={1}
-            name="STEP 1"
-            description="YOUR INFO"
-            isActive={currentStep === 1}
-            handleNavbarClick={handleNavbarClick}
-          />
-          <NavbarItem
-            step={2}
-            name="STEP 2"
-            description="SELECT PLAN"
-            isActive={currentStep === 2}
-            handleNavbarClick={handleNavbarClick}
-          />
-          <NavbarItem
-            step={3}
-            name="STEP 3"
-            description="ADD-ONS"
-            isActive={currentStep === 3}
-            handleNavbarClick={handleNavbarClick}
-          />
-          <NavbarItem
-            step={4}
-            name="STEP 4"
-            description="SUMMARY"
-            isActive={currentStep === 4}
-            handleNavbarClick={handleNavbarClick}
-          /> */}
         </ul>
       </div>
     </div>

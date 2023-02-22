@@ -1,39 +1,39 @@
 import { useState } from "react";
 
-import { Step, NavbarItem } from "@app/types";
+import { Step, NavbarItem, HeaderItem } from "@app/types";
 
 export const useApp = () => {
-  const [currentStep, setCurrentStep] = useState<Step>(4);
+  const [currentStep, setCurrentStep] = useState<Step>(1);
   const navbarItems: NavbarItem[] = [
+    { step: 1, description: "YOUR INFO" },
+    { step: 2, description: "SELECT PLAN" },
+    { step: 3, description: "ADD-ONS" },
+    { step: 4, description: "SUMMARY" },
+    // { step: 5, description: "THANK-YOU" },
+  ];
+  const headerItems: HeaderItem[] = [
     {
-      step: 1,
-      description: "YOUR INFO",
+      title: "Personal Info",
+      description: "Please provide your name, email address and phone number.",
     },
     {
-      step: 2,
-      description: "SELECT PLAN",
+      title: "Select your plan",
+      description: "You have the option of monthly or yearly billing.",
     },
     {
-      step: 3,
-      description: "ADD-ONS",
+      title: "Pick add-ons",
+      description: "Add-ons help enhance your gaming experience.",
     },
     {
-      step: 4,
-      description: "SUMMARY",
+      title: "Finishing up",
+      description: "Double-check everything looks OK before confirming.",
     },
   ];
 
-  function handleNavbarClick(e: React.PointerEvent<HTMLDivElement>) {
-    switch (e.currentTarget.getAttribute("id")) {
-      case "NavbarItem1":
-        return setCurrentStep(() => 1);
-      case "NavbarItem2":
-        return setCurrentStep(() => 2);
-      case "NavbarItem3":
-        return setCurrentStep(() => 3);
-      case "NavbarItem4":
-        return setCurrentStep(() => 4);
-    }
+  const isStepCurrentlyActive = (step: Step) => currentStep === step;
+
+  function handleGoTo(destination: Step) {
+    setCurrentStep(() => destination);
   }
 
   function handleNextStep() {
@@ -43,7 +43,7 @@ export const useApp = () => {
     });
   }
 
-  function handldePreviousStep() {
+  function handlePreviousStep() {
     setCurrentStep(() => {
       if (currentStep === 1) return 1;
       else return currentStep - 1;
@@ -52,9 +52,11 @@ export const useApp = () => {
 
   return {
     currentStep,
-    handleNavbarClick,
-    handldePreviousStep,
-    handleNextStep,
+    isStepCurrentlyActive,
     navbarItems,
+    headerItems,
+    handlePreviousStep,
+    handleNextStep,
+    handleGoTo,
   };
 };

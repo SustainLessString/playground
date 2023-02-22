@@ -1,4 +1,6 @@
-const Step1 = () => {
+import { Step1ComponentProps } from "@app/types/components";
+
+const Step1: React.FC<Step1ComponentProps> = () => {
   return (
     <form className="space-y-4">
       <fieldset>
